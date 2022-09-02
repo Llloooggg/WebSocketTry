@@ -1,3 +1,5 @@
+import json
+
 from flask import render_template
 
 from . import main
@@ -5,4 +7,6 @@ from . import main
 
 @main.route("/")
 def index():
-    return render_template("index.html")
+    with open("data/data.json") as json_file:
+        data = json.load(json_file)["data"]
+    return render_template("index.html", data=data)
